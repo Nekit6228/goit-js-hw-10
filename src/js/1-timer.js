@@ -11,7 +11,7 @@ const dateTimepiker = document.querySelector("#datetime-picker");
 let userSelectedDate = null;
 
 
-// проверяет какую дату выбрат: прошлую= заблокировал кнопку вывел в алерт "нельзя" будующею= кнопка работает дата сохраняеться
+
 flatpickr(dateTimepiker,{
     enableTime: true,
   time_24hr: true,
@@ -35,7 +35,7 @@ flatpickr(dateTimepiker,{
     }
     })
 
-// конвертирует в привычный нам таймер 
+ 
   export function convertMs(ms) {
     // Number of milliseconds per unit of time
     const second = 1000;
@@ -55,19 +55,18 @@ flatpickr(dateTimepiker,{
     return { days, hours, minutes, seconds };
   }
 
-// ето чтоб начиналось с 0 все числа 
+
   function addLeadingZero(value){
     return String(value).padStart(2,"0");
   }
   
-// ето мы оглашает наш таймер 
+
    function updateTimerDisplay({ days, hours, minutes, seconds }) {
     document.querySelector('[data-days]').textContent = addLeadingZero(days);
     document.querySelector('[data-hours]').textContent = addLeadingZero(hours);
     document.querySelector('[data-minutes]').textContent = addLeadingZero(minutes);
     document.querySelector('[data-seconds]').textContent = addLeadingZero(seconds);
-  }
-// стартует таймер запуск 
+   }
   function startTimer(targetDate){
     timerInterval = setInterval(()=>{
       const now = new Date();
@@ -83,7 +82,7 @@ flatpickr(dateTimepiker,{
     },1000)
   }
 
-  // заблокать кнопку при старта таймера 
+
 startBtn.addEventListener('click', () => { 
   if(userSelectedDate){
     startBtn.disabled = true;
