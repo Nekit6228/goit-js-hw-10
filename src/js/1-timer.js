@@ -10,6 +10,10 @@ let userSelectedDate = null;
 let timerInterval = null;
 
 
+startBtn.disabled = true;
+startBtn.style.cursor = "not-allowed"; 
+
+
 flatpickr(dateTimepiker, {
   enableTime: true,
   time_24hr: true,
@@ -25,10 +29,12 @@ flatpickr(dateTimepiker, {
         timeout: 3000
       });
       startBtn.disabled = true;
+      startBtn.style.cursor = "not-allowed";
       userSelectedDate = null;
     } else {
       userSelectedDate = selectedDate;
       startBtn.disabled = false;
+      startBtn.style.cursor = "pointer"; 
     }
   }
 });
@@ -53,7 +59,6 @@ function addLeadingZero(value) {
   return String(value).padStart(2, "0");
 }
 
-
 function updateTimerDisplay({ days, hours, minutes, seconds }) {
   document.querySelector("[data-days]").textContent = addLeadingZero(days);
   document.querySelector("[data-hours]").textContent = addLeadingZero(hours);
@@ -71,9 +76,11 @@ function startTimer(targetDate) {
       clearInterval(timerInterval);
       updateTimerDisplay({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
-
+   
       dateTimepiker.disabled = false;
+      dateTimepiker.style.cursor = "pointer";
       startBtn.disabled = true;
+      startBtn.style.cursor = "not-allowed"; 
     } else {
       const time = convertMs(timeRemaining);
       updateTimerDisplay(time);
@@ -85,8 +92,10 @@ function startTimer(targetDate) {
 startBtn.addEventListener("click", () => {
   if (userSelectedDate) {
     startBtn.disabled = true;
+    startBtn.style.cursor = "not-allowed"; 
     dateTimepiker.disabled = true;
+    dateTimepiker.style.cursor = "not-allowed";
+
     startTimer(userSelectedDate);
   }
 });
-
