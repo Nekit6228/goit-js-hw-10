@@ -26,9 +26,9 @@ form.addEventListener("submit", (event) => {
     const delay = parseInt(delayInput.value); 
     const state = [...stateRadios].find((radio) => radio.checked)?.value; 
 
-    // Якщо усі дані валідні
+ 
     if (state && delay >= 0) {
-        createPromise(delay, state) // Створюємо проміс
+        createPromise(delay, state) 
             .then((delay) => {
                 iziToast.success({
                     title: "Success",
